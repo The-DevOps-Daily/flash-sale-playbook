@@ -1,0 +1,57 @@
+time="2026-10-06T00:48:58+03:00" level=info msg="server stats: {\"maxPayQueue\":0,\"maxCheckoutsInFlight\":47,\"distinctShoppersWithOrders\":500,\"checkoutsInFlight\":0,\"config\":{\"stock\":500,\"payMinMs\":100,\"declineRate\":0.05,\"admitLimit\":0,\"deadline\":false,\"port\":3333,\"mode\":\"reserve\",\"payMaxMs\":400,\"payConcurrency\":0,\"seed\":1},\"orders\":500,\"payQueue\":0,\"declined\":33,\"waitingRoomRejected\":0,\"firstRequestMs\":664.3792000000001,\"stockInitial\":500,\"stockNow\":0,\"ordersToClientsThatHadLeft\":0,\"clientGoneBeforeReply\":0,\"droppedBeforeCharge\":0,\"oversold\":0,\"payInFlight\":0,\"requests\":8249,\"soldOut\":7716}" source=console
+
+
+  █ THRESHOLDS 
+
+    dropped_iterations
+    ✓ 'count==0' count=0
+
+    http_req_duration{name:checkout}
+    ✓ 'p(95)<2000' p(95)=256.66ms
+
+    orders_to_clients_that_left
+    ✓ 'count==0' count=0
+
+    oversold_units
+    ✓ 'count==0' count=0
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 3       0.085686/s
+    checks_succeeded...: 100.00% 3 out of 3
+    checks_failed......: 0.00%   0 out of 3
+
+    ✓ no unit sold twice
+    ✓ every order reached a waiting client
+    ✓ server drained
+
+    CUSTOM
+    checkout_ok_ms.................: avg=248.71ms min=101.64ms med=251.41ms p(90)=368.25ms p(95)=389.31ms p(99)=400.3ms  max=401.21ms
+    declined.......................: 33     0.942549/s
+    orders_to_clients_that_left....: 0      0/s
+    oversold_units.................: 0      0/s
+    purchases......................: 500    14.281048/s
+    sold_out.......................: 7716   220.385139/s
+    time_to_purchase_ms............: avg=249.46ms min=103ms    med=252.5ms  p(90)=369.1ms  p(95)=390.04ms p(99)=401.01ms max=402ms   
+
+    HTTP
+    http_req_duration..............: avg=28.22ms  min=787.61µs med=1.17ms   p(90)=102.98ms p(95)=256.64ms p(99)=392.32ms max=467.89ms
+      { expected_response:true }...: avg=28.22ms  min=787.61µs med=1.17ms   p(90)=102.98ms p(95)=256.64ms p(99)=392.32ms max=467.89ms
+      { name:checkout }............: avg=28.22ms  min=787.61µs med=1.17ms   p(90)=103.02ms p(95)=256.66ms p(99)=392.33ms max=467.89ms
+    http_req_failed................: 0.00%  0 out of 8250
+    http_reqs......................: 8250   235.637299/s
+
+    EXECUTION
+    dropped_iterations.............: 0      0/s
+    iteration_duration.............: avg=28.8ms   min=1.11ms   med=1.68ms   p(90)=104.7ms  p(95)=257.36ms p(99)=393.37ms max=468.56ms
+    iterations.....................: 8249   235.608737/s
+    vus............................: 0      min=0         max=68 
+    vus_max........................: 200    min=200       max=200
+
+    NETWORK
+    data_received..................: 1.7 MB 47 kB/s
+    data_sent......................: 1.1 MB 32 kB/s
+
+
+

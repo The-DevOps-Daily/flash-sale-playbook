@@ -1,0 +1,59 @@
+time="2026-10-06T00:52:17+03:00" level=info msg="server stats: {\"orders\":508,\"ordersToClientsThatHadLeft\":0,\"payInFlight\":0,\"payQueue\":0,\"soldOut\":579,\"requests\":1124,\"declined\":37,\"waitingRoomRejected\":0,\"droppedBeforeCharge\":0,\"maxPayQueue\":0,\"distinctShoppersWithOrders\":508,\"oversold\":8,\"clientGoneBeforeReply\":0,\"checkoutsInFlight\":0,\"firstRequestMs\":1025.5140509999999,\"maxCheckoutsInFlight\":11,\"config\":{\"payMaxMs\":400,\"declineRate\":0.05,\"mode\":\"naive\",\"payMinMs\":100,\"payConcurrency\":0,\"admitLimit\":0,\"deadline\":false,\"seed\":1,\"port\":3333,\"stock\":500},\"stockInitial\":500,\"stockNow\":-8}" source=console
+
+
+  █ THRESHOLDS 
+
+    dropped_iterations
+    ✓ 'count==0' count=0
+
+    http_req_duration{name:checkout}
+    ✓ 'p(95)<2000' p(95)=369.36ms
+
+    orders_to_clients_that_left
+    ✓ 'count==0' count=0
+
+    oversold_units
+    ✗ 'count==0' count=8
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 3      0.066652/s
+    checks_succeeded...: 66.66% 2 out of 3
+    checks_failed......: 33.33% 1 out of 3
+
+    ✗ no unit sold twice
+      ↳  0% — ✓ 0 / ✗ 1
+    ✓ every order reached a waiting client
+    ✓ server drained
+
+    CUSTOM
+    checkout_ok_ms.................: avg=251.5ms  min=101.95ms med=252.92ms p(90)=369.67ms p(95)=387.51ms p(99)=400.58ms max=404.01ms
+    declined.......................: 37     0.822039/s
+    orders_to_clients_that_left....: 0      0/s
+    oversold_units.................: 8      0.177738/s
+    purchases......................: 508    11.286375/s
+    sold_out.......................: 579    12.863802/s
+    time_to_purchase_ms............: avg=252.09ms min=103ms    med=253ms    p(90)=370.3ms  p(95)=388ms    p(99)=401.86ms max=404ms   
+
+    HTTP
+    http_req_duration..............: avg=122.83ms min=978.02µs med=2.93ms   p(90)=340.49ms p(95)=369.34ms p(99)=397.93ms max=404.01ms
+      { expected_response:true }...: avg=122.83ms min=978.02µs med=2.93ms   p(90)=340.49ms p(95)=369.34ms p(99)=397.93ms max=404.01ms
+      { name:checkout }............: avg=122.93ms min=978.02µs med=2.93ms   p(90)=340.6ms  p(95)=369.36ms p(99)=397.94ms max=404.01ms
+    http_req_failed................: 0.00%  0 out of 1125
+    http_reqs......................: 1125   24.994433/s
+
+    EXECUTION
+    dropped_iterations.............: 0      0/s
+    iteration_duration.............: avg=123.59ms min=1.39ms   med=3.87ms   p(90)=341.31ms p(95)=369.87ms p(99)=398.5ms  max=404.78ms
+    iterations.....................: 1124   24.972216/s
+    vus............................: 0      min=0         max=9 
+    vus_max........................: 50     min=50        max=50
+
+    NETWORK
+    data_received..................: 219 kB 4.9 kB/s
+    data_sent......................: 151 kB 3.3 kB/s
+
+
+
+time="2026-10-06T00:52:17+03:00" level=error msg="thresholds on metrics 'oversold_units' have been crossed"

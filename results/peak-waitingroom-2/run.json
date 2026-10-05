@@ -1,0 +1,29 @@
+{
+  "label": "peak-waitingroom-2",
+  "profile": "peak",
+  "started": "2026-10-05T22:06:10Z",
+  "codeHash": "ee3cfacd089bd589",
+  "k6Exit": 99,
+  "serverEnv": {
+    "PORT": "3333",
+    "MODE": "reserve",
+    "STOCK": "1000000",
+    "PAY_MIN_MS": "100",
+    "PAY_MAX_MS": "400",
+    "DECLINE_RATE": "0.05",
+    "SEED": "2",
+    "PAY_CONCURRENCY": "8",
+    "ADMIT_LIMIT": "8"
+  },
+  "k6Env": [
+    "PATIENCE_S=15"
+  ],
+  "host": {
+    "model": "Raspberry Pi 4 Model B Rev 1.1",
+    "cpus": 4,
+    "loadBefore": "1.97 2.94 2.49",
+    "loadAfter": "1.97 2.82 2.48"
+  },
+  "node": "v24.14.0",
+  "k6": "k6 v2.3.0 (commit/e088784614, go1.26.8, linux/arm64)"
+}

@@ -1,0 +1,53 @@
+time="2026-10-06T00:42:41+03:00" level=info msg="server stats: {\"config\":{\"port\":3333,\"mode\":\"reserve\",\"stock\":500,\"payConcurrency\":0,\"admitLimit\":0,\"deadline\":false,\"seed\":1,\"payMinMs\":100,\"payMaxMs\":400,\"declineRate\":0.05},\"stockNow\":0,\"payInFlight\":0,\"payQueue\":0,\"requests\":1124,\"declined\":35,\"droppedBeforeCharge\":0,\"stockInitial\":500,\"orders\":500,\"distinctShoppersWithOrders\":500,\"oversold\":0,\"checkoutsInFlight\":0,\"soldOut\":589,\"waitingRoomRejected\":0,\"firstRequestMs\":1015.7955280000001,\"ordersToClientsThatHadLeft\":0,\"clientGoneBeforeReply\":0,\"maxPayQueue\":0,\"maxCheckoutsInFlight\":11}" source=console
+
+
+  █ THRESHOLDS 
+
+    http_req_duration{name:checkout}
+    ✓ 'p(95)<2000' p(95)=364.56ms
+
+    orders_to_clients_that_left
+    ✓ 'count==0' count=0
+
+    oversold_units
+    ✓ 'count==0' count=0
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 3       0.066656/s
+    checks_succeeded...: 100.00% 3 out of 3
+    checks_failed......: 0.00%   0 out of 3
+
+    ✓ no unit sold twice
+    ✓ every order reached a waiting client
+    ✓ server drained
+
+    CUSTOM
+    checkout_ok_ms.................: avg=248.35ms min=101.96ms med=248.47ms p(90)=368.17ms p(95)=383.16ms p(99)=400.11ms max=407.02ms
+    declined.......................: 35     0.777659/s
+    orders_to_clients_that_left....: 0      0/s
+    oversold_units.................: 0      0/s
+    purchases......................: 500    11.109408/s
+    sold_out.......................: 589    13.086883/s
+    time_to_purchase_ms............: avg=248.94ms min=103ms    med=249.5ms  p(90)=369ms    p(95)=384.04ms p(99)=400.01ms max=408ms   
+
+    HTTP
+    http_req_duration..............: avg=118.93ms min=939.45µs med=2.15ms   p(90)=335.68ms p(95)=364.56ms p(99)=394.85ms max=407.02ms
+      { expected_response:true }...: avg=118.93ms min=939.45µs med=2.15ms   p(90)=335.68ms p(95)=364.56ms p(99)=394.85ms max=407.02ms
+      { name:checkout }............: avg=119.04ms min=939.45µs med=2.15ms   p(90)=335.87ms p(95)=364.56ms p(99)=394.86ms max=407.02ms
+    http_req_failed................: 0.00%  0 out of 1125
+    http_reqs......................: 1125   24.996169/s
+
+    EXECUTION
+    iteration_duration.............: avg=119.68ms min=1.34ms   med=2.93ms   p(90)=336.78ms p(95)=365.57ms p(99)=395.67ms max=407.81ms
+    iterations.....................: 1124   24.97395/s
+    vus............................: 0      min=0         max=9 
+    vus_max........................: 50     min=50        max=50
+
+    NETWORK
+    data_received..................: 219 kB 4.9 kB/s
+    data_sent......................: 151 kB 3.3 kB/s
+
+
+

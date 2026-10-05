@@ -1,0 +1,3 @@
+(node:762323) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+flash-sale naive on :3333 stock=500 admit=0 pay=0 deadline=false

@@ -1,0 +1,68 @@
+time="2026-10-06T00:45:31+03:00" level=warning msg="Request Failed" error="Post \"http://127.0.0.1:3333/checkout?shopper=s715&deadline=1791236731108\": request timeout"
+time="2026-10-06T00:45:31+03:00" level=warning msg="Request Failed" error="Post \"http://127.0.0.1:3333/checkout?shopper=s757&deadline=1791236731967\": request timeout"
+time="2026-10-06T00:45:40+03:00" level=warning msg="Request Failed" error="Post \"http://127.0.0.1:3333/checkout?shopper=s1199&deadline=1791236740920\": request timeout"
+time="2026-10-06T00:45:41+03:00" level=warning msg="Request Failed" error="Post \"http://127.0.0.1:3333/checkout?shopper=s1227&deadline=1791236741451\": request timeout"
+time="2026-10-06T00:45:44+03:00" level=warning msg="Request Failed" error="Post \"http://127.0.0.1:3333/checkout?shopper=s1390&deadline=1791236744513\": request timeout"
+time="2026-10-06T00:45:45+03:00" level=warning msg="Request Failed" error="Post \"http://127.0.0.1:3333/checkout?shopper=s1423&deadline=1791236745092\": request timeout"
+time="2026-10-06T00:45:47+03:00" level=warning msg="Request Failed" error="Post \"http://127.0.0.1:3333/checkout?shopper=s1544&deadline=1791236747359\": request timeout"
+time="2026-10-06T00:45:50+03:00" level=warning msg="Request Failed" error="Post \"http://127.0.0.1:3333/checkout?shopper=s1700&deadline=1791236750201\": request timeout"
+time="2026-10-06T00:45:53+03:00" level=warning msg="Request Failed" error="Post \"http://127.0.0.1:3333/checkout?shopper=s1895&deadline=1791236753792\": request timeout"
+time="2026-10-06T00:45:54+03:00" level=warning msg="Request Failed" error="Post \"http://127.0.0.1:3333/checkout?shopper=s1915&deadline=1791236754190\": request timeout"
+time="2026-10-06T00:45:55+03:00" level=info msg="server stats: {\"stockNow\":998387,\"payInFlight\":0,\"soldOut\":0,\"clientGoneBeforeReply\":10,\"maxCheckoutsInFlight\":8,\"config\":{\"payMaxMs\":400,\"declineRate\":0.05,\"payConcurrency\":8,\"deadline\":false,\"admitLimit\":8,\"seed\":1,\"port\":3333,\"mode\":\"reserve\",\"stock\":1000000,\"payMinMs\":100},\"orders\":1613,\"requests\":16268,\"droppedBeforeCharge\":0,\"ordersToClientsThatHadLeft\":10,\"payQueue\":0,\"distinctShoppersWithOrders\":1613,\"oversold\":0,\"checkoutsInFlight\":0,\"declined\":85,\"waitingRoomRejected\":14570,\"firstRequestMs\":748.992254,\"maxPayQueue\":0,\"stockInitial\":1000000}" source=console
+
+
+  █ THRESHOLDS 
+
+    http_req_duration{name:checkout}
+    ✓ 'p(95)<2000' p(95)=257.1ms
+
+    orders_to_clients_that_left
+    ✗ 'count==0' count=10
+
+    oversold_units
+    ✓ 'count==0' count=0
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 3      0.05138/s
+    checks_succeeded...: 66.66% 2 out of 3
+    checks_failed......: 33.33% 1 out of 3
+
+    ✓ no unit sold twice
+    ✗ every order reached a waiting client
+      ↳  0% — ✓ 0 / ✗ 1
+    ✓ server drained
+
+    CUSTOM
+    abandoned_in_waiting_room......: 421    7.210276/s
+    checkout_ok_ms.................: avg=251.78ms min=101.21ms med=250.25ms p(90)=373.08ms p(95)=387.34ms p(99)=400.44ms max=445.37ms
+    client_timeouts................: 10     0.171265/s
+    declined.......................: 85     1.455756/s
+    orders_to_clients_that_left....: 10     0.171265/s
+    oversold_units.................: 0      0/s
+    purchases......................: 1603   27.453854/s
+    time_to_purchase_ms............: avg=4.94s    min=104ms    med=3.74s    p(90)=12.22s   p(95)=13.7s    p(99)=14.73s   max=14.99s  
+    waiting_room_responses.........: 14570  249.533778/s
+
+    HTTP
+    http_req_duration..............: avg=27.99ms  min=466.03µs med=1.12ms   p(90)=112.93ms p(95)=257.08ms p(99)=374.56ms max=445.37ms
+      { expected_response:true }...: avg=27.91ms  min=466.03µs med=1.12ms   p(90)=112.09ms p(95)=257.21ms p(99)=374.57ms max=445.37ms
+      { name:checkout }............: avg=27.99ms  min=466.03µs med=1.12ms   p(90)=112.94ms p(95)=257.1ms  p(99)=374.56ms max=445.37ms
+    http_req_failed................: 0.06%  10 out of 16269
+    http_reqs......................: 16269  278.63178/s
+
+    EXECUTION
+    dropped_iterations.............: 440    7.53568/s
+    iteration_duration.............: avg=6.84s    min=104.33ms med=5.84s    p(90)=14.57s   p(95)=14.8s    p(99)=14.98s   max=15s     
+    iterations.....................: 2119   36.291151/s
+    vus............................: 2      min=0           max=487
+    vus_max........................: 489    min=50          max=489
+
+    NETWORK
+    data_received..................: 3.5 MB 61 kB/s
+    data_sent......................: 2.2 MB 38 kB/s
+
+
+
+time="2026-10-06T00:45:55+03:00" level=error msg="thresholds on metrics 'orders_to_clients_that_left' have been crossed"

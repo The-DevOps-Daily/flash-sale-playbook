@@ -1,0 +1,75 @@
+time="2026-10-06T01:04:13+03:00" level=warning msg="Request Failed" error="Post \"http://127.0.0.1:3333/checkout?shopper=s415&deadline=1791237853276\": request timeout"
+time="2026-10-06T01:04:14+03:00" level=warning msg="Request Failed" error="Post \"http://127.0.0.1:3333/checkout?shopper=s521&deadline=1791237854932\": request timeout"
+time="2026-10-06T01:04:20+03:00" level=warning msg="Request Failed" error="Post \"http://127.0.0.1:3333/checkout?shopper=s880&deadline=1791237860541\": request timeout"
+time="2026-10-06T01:04:21+03:00" level=warning msg="Request Failed" error="Post \"http://127.0.0.1:3333/checkout?shopper=s934&deadline=1791237861386\": request timeout"
+time="2026-10-06T01:04:23+03:00" level=warning msg="Request Failed" error="Post \"http://127.0.0.1:3333/checkout?shopper=s1097&deadline=1791237863933\": request timeout"
+time="2026-10-06T01:04:24+03:00" level=warning msg="Request Failed" error="Post \"http://127.0.0.1:3333/checkout?shopper=s1111&deadline=1791237864151\": request timeout"
+time="2026-10-06T01:04:26+03:00" level=warning msg="Request Failed" error="Post \"http://127.0.0.1:3333/checkout?shopper=s1284&deadline=1791237866855\": request timeout"
+time="2026-10-06T01:04:28+03:00" level=warning msg="Request Failed" error="Post \"http://127.0.0.1:3333/checkout?shopper=s1387&deadline=1791237868463\": request timeout"
+time="2026-10-06T01:04:35+03:00" level=warning msg="Request Failed" error="Post \"http://127.0.0.1:3333/checkout?shopper=s1844&deadline=1791237875606\": request timeout"
+time="2026-10-06T01:04:39+03:00" level=warning msg="Request Failed" error="Post \"http://127.0.0.1:3333/checkout?shopper=s2076&deadline=1791237879229\": request timeout"
+time="2026-10-06T01:04:40+03:00" level=warning msg="Request Failed" error="Post \"http://127.0.0.1:3333/checkout?shopper=s2134&deadline=1791237880135\": request timeout"
+time="2026-10-06T01:04:41+03:00" level=warning msg="Request Failed" error="Post \"http://127.0.0.1:3333/checkout?shopper=s2232&deadline=1791237881667\": request timeout"
+time="2026-10-06T01:04:42+03:00" level=warning msg="Request Failed" error="Post \"http://127.0.0.1:3333/checkout?shopper=s2289&deadline=1791237882590\": request timeout"
+time="2026-10-06T01:04:43+03:00" level=warning msg="Request Failed" error="Post \"http://127.0.0.1:3333/checkout?shopper=s2344&deadline=1791237883579\": request timeout"
+time="2026-10-06T01:04:44+03:00" level=info msg="server stats: {\"config\":{\"port\":3333,\"mode\":\"reserve\",\"stock\":1000000,\"payMinMs\":100,\"payMaxMs\":400,\"declineRate\":0.05,\"deadline\":false,\"payConcurrency\":8,\"admitLimit\":8,\"seed\":3},\"stockInitial\":1000000,\"requests\":23814,\"soldOut\":0,\"maxPayQueue\":0,\"stockNow\":998344,\"orders\":1656,\"oversold\":0,\"checkoutsInFlight\":0,\"distinctShoppersWithOrders\":1656,\"payQueue\":0,\"waitingRoomRejected\":22081,\"clientGoneBeforeReply\":14,\"droppedBeforeCharge\":0,\"firstRequestMs\":2139.746996,\"ordersToClientsThatHadLeft\":14,\"payInFlight\":0,\"declined\":77,\"maxCheckoutsInFlight\":8}" source=console
+
+
+  █ THRESHOLDS 
+
+    dropped_iterations
+    ✓ 'count==0' count=0
+
+    http_req_duration{name:checkout}
+    ✓ 'p(95)<2000' p(95)=203.62ms
+
+    orders_to_clients_that_left
+    ✗ 'count==0' count=14
+
+    oversold_units
+    ✓ 'count==0' count=0
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 3      0.051528/s
+    checks_succeeded...: 66.66% 2 out of 3
+    checks_failed......: 33.33% 1 out of 3
+
+    ✓ no unit sold twice
+    ✗ every order reached a waiting client
+      ↳  0% — ✓ 0 / ✗ 1
+    ✓ server drained
+
+    CUSTOM
+    abandoned_in_waiting_room......: 826    14.187331/s
+    checkout_ok_ms.................: avg=253.38ms min=100.94ms med=251.18ms p(90)=371.61ms p(95)=387.77ms p(99)=401.25ms max=526.88ms
+    client_timeouts................: 14     0.240463/s
+    declined.......................: 77     1.322548/s
+    orders_to_clients_that_left....: 14     0.240463/s
+    oversold_units.................: 0      0/s
+    purchases......................: 1642   28.202903/s
+    time_to_purchase_ms............: avg=5.56s    min=101ms    med=4.95s    p(90)=12.53s   p(95)=13.8s    p(99)=14.78s   max=15s     
+    waiting_room_responses.........: 22081  379.262062/s
+
+    HTTP
+    http_req_duration..............: avg=21.59ms  min=497.08µs med=1.21ms   p(90)=12.54ms  p(95)=203.62ms p(99)=366.99ms max=684.46ms
+      { expected_response:true }...: avg=21.52ms  min=497.08µs med=1.21ms   p(90)=12.19ms  p(95)=203.55ms p(99)=367ms    max=684.46ms
+      { name:checkout }............: avg=21.59ms  min=497.08µs med=1.21ms   p(90)=12.55ms  p(95)=203.62ms p(99)=366.99ms max=684.46ms
+    http_req_failed................: 0.05%  14 out of 23815
+    http_reqs......................: 23815  409.045152/s
+
+    EXECUTION
+    dropped_iterations.............: 0      0/s
+    iteration_duration.............: avg=8.49s    min=101.42ms med=9.14s    p(90)=14.73s   p(95)=14.87s   p(99)=14.98s   max=15s     
+    iterations.....................: 2559   43.953246/s
+    vus............................: 11     min=0           max=671 
+    vus_max........................: 1200   min=893         max=1200
+
+    NETWORK
+    data_received..................: 5.2 MB 90 kB/s
+    data_sent......................: 3.2 MB 55 kB/s
+
+
+
+time="2026-10-06T01:04:45+03:00" level=error msg="thresholds on metrics 'orders_to_clients_that_left' have been crossed"

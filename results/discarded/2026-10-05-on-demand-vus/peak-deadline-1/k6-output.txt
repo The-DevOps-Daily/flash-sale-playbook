@@ -1,0 +1,55 @@
+time="2026-10-06T00:44:53+03:00" level=info msg="server stats: {\"clientGoneBeforeReply\":0,\"droppedBeforeCharge\":120,\"config\":{\"payMaxMs\":400,\"payConcurrency\":8,\"seed\":1,\"port\":3333,\"stock\":1000000,\"declineRate\":0.05,\"admitLimit\":0,\"deadline\":true,\"mode\":\"reserve\",\"payMinMs\":100},\"orders\":1800,\"checkoutsInFlight\":0,\"waitingRoomRejected\":0,\"firstRequestMs\":797.1291630000001,\"maxCheckoutsInFlight\":586,\"oversold\":0,\"stockNow\":998200,\"requests\":2017,\"declined\":97,\"maxPayQueue\":578,\"stockInitial\":1000000,\"ordersToClientsThatHadLeft\":0,\"distinctShoppersWithOrders\":1800,\"payInFlight\":0,\"payQueue\":0,\"soldOut\":0}" source=console
+
+
+  █ THRESHOLDS 
+
+    http_req_duration{name:checkout}
+    ✗ 'p(95)<2000' p(95)=14.87s
+
+    orders_to_clients_that_left
+    ✓ 'count==0' count=0
+
+    oversold_units
+    ✓ 'count==0' count=0
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 3       0.048293/s
+    checks_succeeded...: 100.00% 3 out of 3
+    checks_failed......: 0.00%   0 out of 3
+
+    ✓ no unit sold twice
+    ✓ every order reached a waiting client
+    ✓ server drained
+
+    CUSTOM
+    checkout_ok_ms.................: avg=8.54s min=102.73ms med=8.84s p(90)=14.78s p(95)=14.87s p(99)=14.95s max=14.99s
+    declined.......................: 97     1.561464/s
+    orders_to_clients_that_left....: 0      0/s
+    oversold_units.................: 0      0/s
+    purchases......................: 1800   28.975618/s
+    skipped_past_deadline..........: 120    1.931708/s
+    time_to_purchase_ms............: avg=8.54s min=104ms    med=8.84s p(90)=14.78s p(95)=14.88s p(99)=14.95s max=14.99s
+
+    HTTP
+    http_req_duration..............: avg=8.87s min=4.48ms   med=9.35s p(90)=14.78s p(95)=14.87s p(99)=14.95s max=14.99s
+      { expected_response:true }...: avg=8.51s min=4.48ms   med=8.78s p(90)=14.79s p(95)=14.88s p(99)=14.95s max=14.99s
+      { name:checkout }............: avg=8.88s min=102.73ms med=9.35s p(90)=14.78s p(95)=14.87s p(99)=14.95s max=14.99s
+    http_req_failed................: 5.94%  120 out of 2018
+    http_reqs......................: 2018   32.484887/s
+
+    EXECUTION
+    dropped_iterations.............: 542    8.724881/s
+    iteration_duration.............: avg=8.88s min=104.05ms med=9.35s p(90)=14.78s p(95)=14.88s p(99)=14.95s max=14.99s
+    iterations.....................: 2017   32.46879/s
+    vus............................: 7      min=0           max=584
+    vus_max........................: 587    min=50          max=587
+
+    NETWORK
+    data_received..................: 379 kB 6.1 kB/s
+    data_sent......................: 271 kB 4.4 kB/s
+
+
+
+time="2026-10-06T00:44:56+03:00" level=error msg="thresholds on metrics 'http_req_duration{name:checkout}' have been crossed"

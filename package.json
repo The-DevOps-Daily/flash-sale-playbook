@@ -1,0 +1,16 @@
+{
+  "name": "flash-sale-playbook",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A flash-sale checkout service and k6 scripts that measure overselling and checkout overload.",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "predict": "node scripts/predict.mjs > results/predictions.json",
+    "summarize": "node scripts/summarize.mjs",
+    "start": "node server.mjs"
+  }
+}

@@ -1,0 +1,221 @@
+{
+    "metrics": {
+        "http_req_waiting": {
+            "avg": 11163.735437738269,
+            "min": 4.574716,
+            "med": 14607.5949115,
+            "p(90)": 14875.7646081,
+            "p(95)": 14932.81980615,
+            "p(99)": 14974.75532118,
+            "max": 14993.959603
+        },
+        "oversold_units": {
+            "count": 0,
+            "rate": 0,
+            "thresholds": {
+                "count==0": false
+            }
+        },
+        "vus": {
+            "value": 9,
+            "min": 0,
+            "max": 944
+        },
+        "http_req_receiving": {
+            "avg": 0.24287829023437485,
+            "min": 0.052963,
+            "med": 0.192701,
+            "p(90)": 0.312145,
+            "p(95)": 0.4420661999999999,
+            "p(99)": 1.2149384199999984,
+            "max": 12.879253
+        },
+        "http_req_failed": {
+            "passes": 636,
+            "fails": 1924,
+            "value": 0.2484375
+        },
+        "http_req_duration": {
+            "p(95)": 14933.05163615,
+            "p(99)": 14974.97609854,
+            "max": 14994.260747,
+            "avg": 11164.090279541386,
+            "min": 4.83188,
+            "med": 14607.8021,
+            "p(90)": 14875.9786365
+        },
+        "iteration_duration": {
+            "med": 14608.509934,
+            "p(90)": 14876.6016612,
+            "p(95)": 14933.701755,
+            "p(99)": 14975.55711628,
+            "max": 14994.869647,
+            "avg": 11169.783327005865,
+            "min": 109.981338
+        },
+        "http_req_duration{name:checkout}": {
+            "max": 14994.260747,
+            "avg": 11168.451068286811,
+            "min": 106.836546,
+            "med": 14607.845549,
+            "p(90)": 14875.995629000001,
+            "p(95)": 14933.0594403,
+            "p(99)": 14974.98463748,
+            "thresholds": {
+                "p(95)<2000": true
+            }
+        },
+        "vus_max": {
+            "value": 1200,
+            "min": 626,
+            "max": 1200
+        },
+        "http_req_duration{expected_response:true}": {
+            "p(90)": 14906.6369937,
+            "p(95)": 14945.65924585,
+            "p(99)": 14977.37617297,
+            "max": 14994.260747,
+            "avg": 10019.892183977656,
+            "min": 4.83188,
+            "med": 12487.247578
+        },
+        "http_req_sending": {
+            "avg": 0.11196351289062526,
+            "min": 0.036481,
+            "med": 0.0838415,
+            "p(90)": 0.16255540000000002,
+            "p(95)": 0.19962149999999984,
+            "p(99)": 0.6401083399999997,
+            "max": 7.991356
+        },
+        "purchases": {
+            "count": 1834,
+            "rate": 29.439001132844965
+        },
+        "data_sent": {
+            "count": 344430,
+            "rate": 5528.721461388109
+        },
+        "dropped_iterations": {
+            "count": 0,
+            "rate": 0,
+            "thresholds": {
+                "count==0": false
+            }
+        },
+        "time_to_purchase_ms": {
+            "p(95)": 14946,
+            "p(99)": 14978,
+            "max": 14992,
+            "avg": 10017.565430752453,
+            "min": 109,
+            "med": 12450,
+            "p(90)": 14905.7
+        },
+        "declined": {
+            "count": 89,
+            "rate": 1.4286101967411133
+        },
+        "http_req_tls_handshaking": {
+            "p(90)": 0,
+            "p(95)": 0,
+            "p(99)": 0,
+            "max": 0,
+            "avg": 0,
+            "min": 0,
+            "med": 0
+        },
+        "checks": {
+            "passes": 3,
+            "fails": 0,
+            "value": 1
+        },
+        "skipped_past_deadline": {
+            "count": 636,
+            "rate": 10.208944776711776
+        },
+        "orders_to_clients_that_left": {
+            "count": 0,
+            "rate": 0,
+            "thresholds": {
+                "count==0": false
+            }
+        },
+        "checkout_ok_ms": {
+            "med": 12448.706549,
+            "p(90)": 14905.8959848,
+            "p(95)": 14945.61830535,
+            "p(99)": 14977.13292898,
+            "max": 14991.773524,
+            "avg": 10016.20077129117,
+            "min": 106.836546
+        },
+        "data_received": {
+            "rate": 7879.748343025043,
+            "count": 490895
+        },
+        "http_reqs": {
+            "count": 2560,
+            "rate": 41.092607906261236
+        },
+        "iterations": {
+            "count": 2559,
+            "rate": 41.07655610629785
+        },
+        "http_req_blocked": {
+            "med": 0.0344715,
+            "p(90)": 0.9910038000000001,
+            "p(95)": 1.7372782999999996,
+            "p(99)": 5.27562766,
+            "max": 23.579053,
+            "avg": 0.507513183203125,
+            "min": 0.011592
+        },
+        "http_req_connecting": {
+            "p(95)": 1.236170749999999,
+            "p(99)": 4.822337139999998,
+            "max": 23.432926,
+            "avg": 0.36975527343750075,
+            "min": 0,
+            "med": 0,
+            "p(90)": 0.6485845000000001
+        }
+    },
+    "root_group": {
+        "name": "",
+        "path": "",
+        "id": "d41d8cd98f00b204e9800998ecf8427e",
+        "groups": {
+            "teardown": {
+                "name": "teardown",
+                "path": "::teardown",
+                "id": "a8a9942382e8ffe2e56ef29e664b8229",
+                "groups": {},
+                "checks": {
+                        "no unit sold twice": {
+                            "name": "no unit sold twice",
+                            "path": "::teardown::no unit sold twice",
+                            "id": "7004ea399abc80513b4b60ba53bec9cc",
+                            "passes": 1,
+                            "fails": 0
+                        },
+                        "every order reached a waiting client": {
+                            "id": "64596e7a065e56fc75b7d195e143a7d8",
+                            "passes": 1,
+                            "fails": 0,
+                            "name": "every order reached a waiting client",
+                            "path": "::teardown::every order reached a waiting client"
+                        },
+                        "server drained": {
+                            "fails": 0,
+                            "name": "server drained",
+                            "path": "::teardown::server drained",
+                            "id": "8c1b1207a08726941e62498ca5b0739b",
+                            "passes": 1
+                        }
+                    }
+            }
+        },
+        "checks": {}
+    }
+}
