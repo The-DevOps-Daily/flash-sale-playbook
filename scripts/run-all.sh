@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
 # Every recorded run in results/, in the order they were made.
 # Naive and fixed runs are interleaved so that background load on the
-# machine affects both sides alike. About 25 minutes in total.
+# machine is spread across both. About 25 minutes in total.
+#
+# The published runs live in results/. To make your own, pick a new folder:
+#   RESULTS_DIR=my-results scripts/run-all.sh
 set -euo pipefail
 cd "$(dirname "$0")/.."
+export RESULTS_DIR=${RESULTS_DIR:-results}
+mkdir -p "$RESULTS_DIR"
 
-node scripts/predict.mjs >results/predictions.json
+node scripts/predict.mjs >"$RESULTS_DIR/predictions.json"
 
 # Experiment 1: a 500-unit drop. Same scenario, two checkout paths.
 for i in 1 2 3; do

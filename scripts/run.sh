@@ -4,6 +4,10 @@
 #
 #   scripts/run.sh <label> <profile> [VAR=value ...]
 #   scripts/run.sh drop-naive-1 drop MODE=naive SEED=1
+#
+# RESULTS_DIR picks the output folder (default: results). k6 exit code 99
+# means a threshold failed, which some variants are expected to do; any
+# other non-zero exit means the run itself is broken and this script fails.
 set -euo pipefail
 
 label=${1:?label}
@@ -11,7 +15,9 @@ profile=${2:?profile}
 shift 2
 
 root=$(cd "$(dirname "$0")/.." && pwd)
-out="$root/results/$label"
+results_dir=${RESULTS_DIR:-results}
+case "$results_dir" in /*) ;; *) results_dir="$root/$results_dir" ;; esac
+out="$results_dir/$label"
 if [[ -e "$out" ]]; then
   echo "refusing to overwrite $out; pick a new label or delete it" >&2
   exit 1
@@ -68,4 +74,8 @@ fs.writeFileSync(process.env.OUT + "/run.json", JSON.stringify({
 }, null, 2) + "\n");
 ' "$label" "$profile" "$started" "$code_hash" "$k6_exit" "$load_before" "$load_after" \
   "$("$k6bin" version | head -1)" "${server_env[*]}" "${k6_env[*]:-}"
-echo "$label: k6 exit $k6_exit, results in results/$label"
+echo "$label: k6 exit $k6_exit, results in ${out#"$root"/}"
+if [[ $k6_exit -ne 0 && $k6_exit -ne 99 ]]; then
+  echo "$label: k6 failed to run properly (exit $k6_exit)" >&2
+  exit 1
+fi

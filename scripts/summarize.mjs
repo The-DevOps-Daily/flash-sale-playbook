@@ -2,12 +2,13 @@
 // Refuses to mix runs of one profile made with different code, and flags
 // any run where k6 could not start every shopper on schedule.
 //
-//   node scripts/summarize.mjs
+//   node scripts/summarize.mjs            (or RESULTS_DIR=my-results ...)
+// Exits non-zero when any run is not a valid measurement.
 import fs from 'node:fs';
 import path from 'node:path';
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
-const dir = path.join(root, 'results');
+const dir = path.resolve(root, process.env.RESULTS_DIR || 'results');
 const predictions = JSON.parse(fs.readFileSync(path.join(dir, 'predictions.json'), 'utf8'));
 
 const runs = fs
@@ -44,6 +45,13 @@ for (const r of runs) {
   const dropped = count(r.k6, 'dropped_iterations');
   if (dropped) problems.push(`${r.run.label}: ${dropped} dropped iterations`);
   if (r.server.checkoutsInFlight !== 0) problems.push(`${r.run.label}: server had not drained`);
+}
+// Shoppers k6 v2.3.0 schedules for each profile (iterations plus dropped).
+const SCHEDULED = { drop: 8249, low: 1124, peak: 2559, smoke: 29 };
+for (const r of runs) {
+  const expected = SCHEDULED[r.run.profile];
+  const started = count(r.k6, 'iterations');
+  if (expected && started !== expected) problems.push(`${r.run.label}: started ${started} of ${expected} scheduled shoppers`);
 }
 // Every run of a profile should start the same shoppers. k6 does not always
 // count a shopper it never started as dropped, so compare across runs too.
@@ -96,3 +104,4 @@ if (peak) {
 md += problems.length ? `\n## Problems\n\n${problems.map((p) => `- ${p}`).join('\n')}\n` : '\nNo dropped iterations, every server drained before counting.\n';
 fs.writeFileSync(path.join(dir, 'summary.md'), md);
 console.log(md);
+if (problems.length) process.exit(1);
